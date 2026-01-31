@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>โซลูชัน - ภาพรวม</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 10px 50px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 50px 40px 50px;
+            justify-content: space-between;
+        }
+
+        /* Flow Diagram Section */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 160px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #0066CC;
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.1);
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover .step-circle {
+            transform: scale(1.1);
+            border-color: #00CC66;
+            color: #00CC66;
+            box-shadow: 0 10px 25px rgba(0, 204, 102, 0.2);
+        }
+
+        .step-label {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .arrow-connector {
+            flex: 1;
+            height: 2px;
+            background-color: #CBD5E1;
+            max-width: 80px;
+            position: relative;
+        }
+
+        .arrow-connector::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #CBD5E1;
+            border-bottom: 2px solid #CBD5E1;
+            transform: rotate(-45deg);
+        }
+
+        /* Features Box */
+        .features-container {
+            background-color: #F8FAFC;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #E2E8F0;
+            position: relative;
+        }
+        
+        .passport-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #0066CC;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: #FFFFFF;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .icon-check { background-color: #ECFDF5; color: #00CC66; }
+        .icon-manual { background-color: #EFF6FF; color: #0066CC; }
+        .icon-warranty { background-color: #FFF7ED; color: #F97316; }
+        .icon-service { background-color: #F5F3FF; color: #8B5CF6; }
+        .icon-trace { background-color: #FFFBEB; color: #F59E0B; }
+
+        .feature-title {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 500;
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        /* Description text */
+        .desc-text {
+            text-align: center;
+            color: #64748B;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Decorative background circle */
+        .bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 204, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Solution Overview</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">Digital Product Passport Lite คืออะไร?</h1>
+</div>
+<div class="content-wrapper">
+<p class="desc-text">แพลตฟอร์มที่ให้สินค้าทุกชิ้นมี "พาสปอร์ตดิจิทัล" ประจำตัว<br/>เพียงสแกน QR Code ครั้งเดียว ได้ข้อมูลครบ จบในที่เดียว</p>
+<div class="bg-glow"></div>
+<!-- Central Flow Diagram -->
+<div class="flow-container">
+<!-- Step 1 -->
+<div class="flow-step">
+<div class="step-circle">
+<i class="fa-solid fa-box-open"></i>
+</div>
+<div class="step-label">สินค้า</div>
+</div>
+<!-- Arrow -->
+<div class="arrow-connector"></div>
+<!-- Step 2 -->
+<div class="flow-step">
+<div class="step-circle" style="border-color: #0066CC; color: #0066CC;">
+<i class="fa-solid fa-qrcode"></i>
+</div>
+<div class="step-label">QR Code</div>
+</div>
+<!-- Arrow -->
+<div class="arrow-connector"></div>
+<!-- Step 3 -->
+<div class="flow-step">
+<div class="step-circle">
+<i class="fa-solid fa-mobile-screen-button"></i>
+</div>
+<div class="step-label">มือถือสแกน</div>
+</div>
+<!-- Arrow -->
+<div class="arrow-connector"></div>
+<!-- Step 4 -->
+<div class="flow-step">
+<div class="step-circle" style="background-color: #0066CC; color: white; border-color: #0066CC;">
+<i class="fa-solid fa-passport"></i>
+</div>
+<div class="step-label">ข้อมูลครบ</div>
+</div>
+</div>
+<!-- Bottom Features Box -->
+<div class="features-container">
+<div class="passport-badge">
+<i class="fa-solid fa-id-card"></i> Digital Passport Includes
+            </div>
+<div class="features-grid">
+<!-- Feature 1 -->
+<div class="feature-item">
+<div class="feature-icon-wrapper icon-check">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+<div class="feature-title">ยืนยันของแท้<br/>(Authenticity)</div>
+</div>
+<!-- Feature 2 -->
+<div class="feature-item">
+<div class="feature-icon-wrapper icon-manual">
+<i class="fa-solid fa-book-open"></i>
+</div>
+<div class="feature-title">คู่มือ &amp; วิธีใช้<br/>(Digital Manual)</div>
+</div>
+<!-- Feature 3 -->
+<div class="feature-item">
+<div class="feature-icon-wrapper icon-warranty">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<div class="feature-title">ลงทะเบียนรับประกัน<br/>(E-Warranty)</div>
+</div>
+<!-- Feature 4 -->
+<div class="feature-item">
+<div class="feature-icon-wrapper icon-service">
+<i class="fa-solid fa-headset"></i>
+</div>
+<div class="feature-title">ติดต่อศูนย์บริการ<br/>(Service Contact)</div>
+</div>
+<!-- Feature 5 -->
+<div class="feature-item">
+<div class="feature-icon-wrapper icon-trace">
+<i class="fa-solid fa-leaf"></i>
+</div>
+<div class="feature-title">ติดตามที่มา<br/>(Traceability)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

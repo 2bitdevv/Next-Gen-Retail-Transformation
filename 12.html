@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Unit Economics</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            text-align: right;
+            padding-bottom: 5px;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 50px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Segment Label */
+        .segment-badge {
+            align-self: flex-start;
+            background-color: #E0F2FE;
+            color: #0369A1;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -10px; /* Pull closer to KPIs */
+        }
+
+        /* KPIs Row */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            height: 200px;
+        }
+
+        .kpi-card {
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .kpi-icon-bg {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .kpi-label {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            color: #64748B;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .kpi-value {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .kpi-subtext {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.95rem;
+            color: #94A3B8;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Specific KPI Styles */
+        .kpi-revenue .kpi-value { color: #0066CC; }
+        .kpi-revenue { border-left: 5px solid #0066CC; }
+        
+        .kpi-margin .kpi-value { color: #00CC66; }
+        .kpi-margin { border-left: 5px solid #00CC66; }
+        
+        .kpi-ltv .kpi-value { color: #8B5CF6; }
+        .kpi-ltv { border-left: 5px solid #8B5CF6; }
+
+        /* Details & Scale Row */
+        .details-row {
+            display: flex;
+            gap: 25px;
+            flex: 1;
+        }
+
+        .detail-panel {
+            background-color: #F8FAFC;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .panel-left {
+            flex: 0.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-right {
+            flex: 0.4;
+            background-color: #F0F9FF; /* Light blue tint for scalability */
+            border-color: #BAE6FD;
+        }
+
+        .panel-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Metrics List */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .metric-item {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .metric-head {
+            font-size: 0.9rem;
+            color: #64748B;
+            margin-bottom: 5px;
+        }
+
+        .metric-val {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .metric-desc {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            margin-top: 5px;
+        }
+
+        /* Scale List */
+        .scale-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .scale-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .scale-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0066CC;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .scale-content h4 {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            color: #0066CC;
+            margin: 0 0 2px 0;
+            font-size: 1.1rem;
+        }
+
+        .scale-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Financial Metrics</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">Unit Economics</h1>
+<div class="subtitle">ตัวเลขที่น่าสนใจ (Professional Tier)</div>
+</div>
+<div class="content-wrapper">
+<div class="segment-badge">
+<i class="fa-solid fa-bullseye"></i> Target Segment: Mid-sized Brands
+        </div>
+<!-- Row 1: Key KPIs -->
+<div class="kpi-row">
+<!-- Revenue -->
+<div class="kpi-card kpi-revenue">
+<i class="fa-solid fa-money-bill-wave kpi-icon-bg"></i>
+<div class="kpi-label">Monthly Revenue</div>
+<div class="kpi-value">30,000฿</div>
+<div class="kpi-subtext">per active brand subscription</div>
+</div>
+<!-- Margin -->
+<div class="kpi-card kpi-margin">
+<i class="fa-solid fa-chart-pie kpi-icon-bg"></i>
+<div class="kpi-label">Gross Margin</div>
+<div class="kpi-value">73%</div>
+<div class="kpi-subtext">high efficiency tech stack</div>
+</div>
+<!-- LTV/CAC -->
+<div class="kpi-card kpi-ltv">
+<i class="fa-solid fa-scale-balanced kpi-icon-bg"></i>
+<div class="kpi-label">LTV / CAC</div>
+<div class="kpi-value">2.4x</div>
+<div class="kpi-subtext">healthy growth sustainable ratio</div>
+</div>
+</div>
+<!-- Row 2: Details & Scalability -->
+<div class="details-row">
+<!-- Breakdown -->
+<div class="detail-panel panel-left">
+<div class="panel-title">
+<i class="fa-solid fa-calculator text-gray-500"></i> Cost &amp; Acquisition Breakdown
+                </div>
+<div class="metrics-grid">
+<div class="metric-item">
+<div class="metric-head">Monthly Cost</div>
+<div class="metric-val">8,000฿</div>
+<div class="metric-desc">Cloud hosting, Support team allocation</div>
+</div>
+<div class="metric-item">
+<div class="metric-head">CAC</div>
+<div class="metric-val">150,000฿</div>
+<div class="metric-desc">Ads spend, Sales team commission</div>
+</div>
+<div class="metric-item">
+<div class="metric-head">Retention</div>
+<div class="metric-val">12+ Mths</div>
+<div class="metric-desc">Estimated contract lifetime</div>
+</div>
+</div>
+</div>
+<!-- Scalability -->
+<div class="detail-panel panel-right">
+<div class="panel-title" style="color: #0066CC;">
+<i class="fa-solid fa-arrow-trend-up"></i> Scalability Potential
+                </div>
+<div class="scale-list">
+<div class="scale-item">
+<div class="scale-icon"><i class="fa-solid fa-code"></i></div>
+<div class="scale-content">
+<h4>Fixed Cost Structure</h4>
+<p>ลงทุนพัฒนาแพลตฟอร์มครั้งเดียว (Develop once)</p>
+</div>
+</div>
+<div class="scale-item">
+<div class="scale-icon"><i class="fa-solid fa-cloud"></i></div>
+<div class="scale-content">
+<h4>Low Variable Cost</h4>
+<p>ต้นทุนเพิ่มน้อยมากเมื่อขยายฐานลูกค้า (≈0 when scale)</p>
+</div>
+</div>
+<div class="scale-item">
+<div class="scale-icon"><i class="fa-solid fa-percent"></i></div>
+<div class="scale-content">
+<h4>Margin Growth</h4>
+<p>Gross margin จะเพิ่มเป็น 85%+ เมื่อมี Volume</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

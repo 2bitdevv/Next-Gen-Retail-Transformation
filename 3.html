@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>โอกาสจากเทรนด์โลก</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #00CC66; /* Green for trends/opportunity */
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            text-align: right;
+            max-width: 500px;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            padding: 0 50px 50px 50px;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .trend-card {
+            flex: 1;
+            border-radius: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 102, 204, 0.15);
+        }
+
+        .card-header {
+            padding: 30px 30px 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 0 30px 30px 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Card Variations */
+        .card-transparency { border-top: 6px solid #00CC66; }
+        .card-omnichannel { border-top: 6px solid #0066CC; }
+        .card-data { border-top: 6px solid #F59E0B; }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .icon-transparency { background-color: #ECFDF5; color: #00CC66; }
+        .icon-omnichannel { background-color: #EFF6FF; color: #0066CC; }
+        .icon-data { background-color: #FFFBEB; color: #F59E0B; }
+
+        .card-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+        
+        .card-subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            color: #64748B;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        /* List Items */
+        .trend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .check-icon {
+            margin-right: 12px;
+            font-size: 1rem;
+            margin-top: 4px;
+        }
+
+        .check-transparency { color: #00CC66; }
+        .check-omnichannel { color: #0066CC; }
+        .check-data { color: #F59E0B; }
+
+        /* Bottom Graphic Area */
+        .graphic-area {
+            height: 120px;
+            margin-top: auto;
+            border-radius: 12px;
+            background-color: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Chart Placeholder styling */
+        .chart-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+        
+        .trend-stat {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Kanit', sans-serif;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 5;
+        }
+        
+        .stat-transparency { color: #00CC66; }
+        .stat-omnichannel { color: #0066CC; }
+        .stat-data { color: #F59E0B; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Global Trends &amp; Opportunities</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">โอกาสจากเทรนด์โลก</h1>
+<div class="subtitle">3 กระแสหลักที่ผลักดันให้ Digital Product Passport<br/>เป็นสิ่งที่ "ต้องมี" (Must-Have)</div>
+</div>
+<div class="content-wrapper">
+<!-- Card 1: Product Transparency -->
+<div class="trend-card card-transparency">
+<div class="card-header">
+<div class="icon-box icon-transparency">
+<i class="fa-solid fa-earth-americas"></i>
+</div>
+<h3 class="card-title">Product Transparency</h3>
+<p class="card-subtitle">ความโปร่งใสคือมาตรฐานใหม่</p>
+</div>
+<div class="card-body">
+<ul class="trend-list">
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-transparency"></i>
+<p>EU บังคับใช้ Digital Product Passport (2027+)</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-transparency"></i>
+<p>ผู้บริโภค 60%+ ใส่ใจ ESG/Sustainability</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-transparency"></i>
+<p>Gen Z ต้องการรู้ที่มาสินค้า</p>
+</li>
+</ul>
+<div class="graphic-area">
+<div class="chart-container">
+<canvas id="transparencyChart"></canvas>
+</div>
+<div class="trend-stat stat-transparency">Growth +24%</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Omnichannel -->
+<div class="trend-card card-omnichannel">
+<div class="card-header">
+<div class="icon-box icon-omnichannel">
+<i class="fa-solid fa-cart-shopping"></i>
+</div>
+<h3 class="card-title">Omnichannel</h3>
+<p class="card-subtitle">เชื่อมต่อประสบการณ์ไร้รอยต่อ</p>
+</div>
+<div class="card-body">
+<ul class="trend-list">
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-omnichannel"></i>
+<p>ผู้บริโภคต้องการ Seamless Online-Offline</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-omnichannel"></i>
+<p>สินค้าควรมี "Digital Twin" คู่ขนาน</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-omnichannel"></i>
+<p>เชื่อมโลก Physical + Digital (Phygital)</p>
+</li>
+</ul>
+<div class="graphic-area" style="background-color: #F0F9FF;">
+<div style="display: flex; align-items: center; justify-content: center; width: 100%; gap: 20px;">
+<i class="fa-solid fa-store" style="font-size: 2.5rem; color: #CBD5E1;"></i>
+<i class="fa-solid fa-arrow-right-arrow-left" style="font-size: 1.5rem; color: #0066CC;"></i>
+<i class="fa-solid fa-mobile-screen" style="font-size: 2.5rem; color: #0066CC;"></i>
+</div>
+<div class="trend-stat stat-omnichannel">Phygital</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Data-Driven -->
+<div class="trend-card card-data">
+<div class="card-header">
+<div class="icon-box icon-data">
+<i class="fa-solid fa-chart-pie"></i>
+</div>
+<h3 class="card-title">Data-Driven Retail</h3>
+<p class="card-subtitle">ข้อมูลคือขุมทรัพย์ใหม่</p>
+</div>
+<div class="card-body">
+<ul class="trend-list">
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-data"></i>
+<p>แบรนด์ต้องการข้อมูล Consumer Behavior</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-data"></i>
+<p>รู้ว่าใครซื้อ ใช้อย่างไร เจอปัญหาอะไร</p>
+</li>
+<li class="trend-item">
+<i class="fa-solid fa-circle-check check-icon check-data"></i>
+<p>ปรับปรุงสินค้าตามข้อมูลจริง (Real usage)</p>
+</li>
+</ul>
+<div class="graphic-area">
+<div class="chart-container">
+<canvas id="dataChart"></canvas>
+</div>
+<div class="trend-stat stat-data">Insight</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Chart 1: Transparency Growth (Line Chart)
+        const ctx1 = document.getElementById('transparencyChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024', '2025', '2026', '2027'],
+                datasets: [{
+                    label: 'Demand',
+                    data: [30, 45, 60, 75, 90],
+                    borderColor: '#00CC66',
+                    backgroundColor: 'rgba(0, 204, 102, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { display: false }, y: { display: false, min: 0, max: 100 } },
+                layout: { padding: 0 }
+            }
+        });
+
+        // Chart 3: Data Value (Bar Chart)
+        const ctx3 = document.getElementById('dataChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [{
+                    label: 'Value',
+                    data: [40, 55, 70, 85],
+                    backgroundColor: '#F59E0B',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { display: false }, y: { display: false } },
+                layout: { padding: 10 }
+            }
+        });
+    </script>
+</body>
+</html>

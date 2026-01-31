@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Revenue Model</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 30px 50px 50px 50px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Left Side: Chart */
+        .chart-section {
+            flex: 0.45;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        .chart-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .center-label {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            color: #64748B;
+            display: block;
+        }
+
+        .center-value {
+            font-family: 'Kanit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E293B;
+            display: block;
+            line-height: 1;
+        }
+
+        /* Right Side: Details */
+        .details-section {
+            flex: 0.55;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .revenue-card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .revenue-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-indicator {
+            width: 12px;
+            height: 40px;
+            border-radius: 4px;
+        }
+
+        .icon-wrapper {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .revenue-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1E293B;
+        }
+
+        .revenue-percent {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .revenue-details {
+            padding-left: 60px; /* Align with title */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 20px;
+        }
+
+        .detail-item {
+            font-size: 0.95rem;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .detail-item::before {
+            content: "•";
+            color: #CBD5E1;
+            font-weight: bold;
+        }
+
+        /* Color Themes */
+        .theme-saas .color-indicator { background-color: #0066CC; }
+        .theme-saas .icon-wrapper { background-color: #EFF6FF; color: #0066CC; }
+        .theme-saas .revenue-percent { color: #0066CC; }
+
+        .theme-trans .color-indicator { background-color: #00CC66; }
+        .theme-trans .icon-wrapper { background-color: #ECFDF5; color: #00CC66; }
+        .theme-trans .revenue-percent { color: #00CC66; }
+
+        .theme-vas .color-indicator { background-color: #F59E0B; }
+        .theme-vas .icon-wrapper { background-color: #FFFBEB; color: #F59E0B; }
+        .theme-vas .revenue-percent { color: #F59E0B; }
+
+        .theme-part .color-indicator { background-color: #64748B; }
+        .theme-part .icon-wrapper { background-color: #F1F5F9; color: #64748B; }
+        .theme-part .revenue-percent { color: #64748B; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Business Model</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">โมเดลธุรกิจ - รายได้หลากหลาย</h1>
+<div class="subtitle">Sustainable Revenue Streams</div>
+</div>
+<div class="content-wrapper">
+<!-- Left Chart -->
+<div class="chart-section">
+<div class="chart-container">
+<canvas id="revenueChart"></canvas>
+</div>
+<div class="chart-center-text">
+<span class="center-label">Recurring</span>
+<span class="center-value">60%</span>
+<span class="center-label" style="font-size: 0.9rem;">SaaS Base</span>
+</div>
+</div>
+<!-- Right Details -->
+<div class="details-section">
+<!-- SaaS -->
+<div class="revenue-card theme-saas">
+<div class="card-header-row">
+<div class="title-group">
+<div class="color-indicator"></div>
+<div class="icon-wrapper"><i class="fa-solid fa-server"></i></div>
+<div class="revenue-title">SaaS Subscription</div>
+</div>
+<div class="revenue-percent">60%</div>
+</div>
+<div class="revenue-details">
+<div class="detail-item">Starter: 5,000 - 15,000 ฿/เดือน</div>
+<div class="detail-item">Professional: 15,000 - 50,000 ฿/เดือน</div>
+<div class="detail-item">Enterprise: 50,000 - 200,000 ฿/เดือน</div>
+</div>
+</div>
+<!-- Transaction -->
+<div class="revenue-card theme-trans">
+<div class="card-header-row">
+<div class="title-group">
+<div class="color-indicator"></div>
+<div class="icon-wrapper"><i class="fa-solid fa-qrcode"></i></div>
+<div class="revenue-title">Transaction Fees</div>
+</div>
+<div class="revenue-percent">20%</div>
+</div>
+<div class="revenue-details">
+<div class="detail-item">QR Code: 0.5 - 2 ฿/ชิ้น</div>
+<div class="detail-item">Digital Warranty: 5 - 10 ฿/ชิ้น</div>
+<div class="detail-item">Authentication: 10 - 20 ฿/ครั้ง</div>
+</div>
+</div>
+<!-- Value Added -->
+<div class="revenue-card theme-vas">
+<div class="card-header-row">
+<div class="title-group">
+<div class="color-indicator"></div>
+<div class="icon-wrapper"><i class="fa-solid fa-gem"></i></div>
+<div class="revenue-title">Value-Added Services</div>
+</div>
+<div class="revenue-percent">15%</div>
+</div>
+<div class="revenue-details">
+<div class="detail-item">Extended Warranty (Comm. 10-15%)</div>
+<div class="detail-item">Service Booking (Comm. 5-10%)</div>
+<div class="detail-item">Premium Analytics Reports</div>
+</div>
+</div>
+<!-- Partnership -->
+<div class="revenue-card theme-part">
+<div class="card-header-row">
+<div class="title-group">
+<div class="color-indicator"></div>
+<div class="icon-wrapper"><i class="fa-solid fa-handshake"></i></div>
+<div class="revenue-title">Partnership Fees</div>
+</div>
+<div class="revenue-percent">5%</div>
+</div>
+<div class="revenue-details">
+<div class="detail-item">System Integration Fees</div>
+<div class="detail-item">White-label Licensing</div>
+<div class="detail-item">Training Programs</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        
+        // Chart Configuration
+        const revenueChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['SaaS Subscription', 'Transaction Fees', 'Value-Added Services', 'Partnership Fees'],
+                datasets: [{
+                    data: [60, 20, 15, 5],
+                    backgroundColor: [
+                        '#0066CC', // SaaS - Blue
+                        '#00CC66', // Trans - Green
+                        '#F59E0B', // VAS - Amber
+                        '#64748B'  // Part - Slate
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        display: false // Hide default legend
+                    },
+                    tooltip: {
+                        backgroundColor: '#1E293B',
+                        titleFont: { family: 'Kanit', size: 14 },
+                        bodyFont: { family: 'Sarabun', size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                return ' ' + context.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: 20
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Features ขั้นสูง - พัฒนาต่อเนื่อง</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            text-align: left;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 10px 50px 50px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Phase Bands */
+        .phase-band {
+            display: flex;
+            background-color: #F8FAFC;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 220px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        
+        .phase-band:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Phase Header (Left) */
+        .phase-header {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase-2-bg { background-color: #0066CC; }
+        .phase-3-bg { background-color: #00CC66; }
+
+        .phase-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .phase-time {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            width: fit-content;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .phase-icon-bg {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 8rem;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        /* Phase Features (Right) */
+        .phase-features {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .feature-card {
+            flex: 1;
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #F1F5F9;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #CBD5E1;
+        }
+
+        .feature-icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .icon-p2 { background-color: #EFF6FF; color: #0066CC; }
+        .icon-p3 { background-color: #ECFDF5; color: #00CC66; }
+
+        .feature-name {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1E293B;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #64748B;
+            line-height: 1.3;
+        }
+
+        /* Connection Line */
+        .timeline-connector {
+            position: absolute;
+            left: 12.5%;
+            top: 220px; /* Adjust based on first band height */
+            height: 30px;
+            width: 4px;
+            background-color: #E2E8F0;
+            z-index: 0;
+            /* Dashed line effect */
+            background-image: linear-gradient(to bottom, #CBD5E1 50%, rgba(255, 255, 255, 0) 0%);
+            background-position: left;
+            background-size: 4px 10px;
+            background-repeat: repeat-y;
+        }
+
+        /* Arrow indicator */
+        .next-phase-arrow {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94A3B8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 5;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Future Roadmap</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ฟีเจอร์ขั้นสูง - พัฒนาต่อเนื่อง</h1>
+<h2 class="subtitle">แผนการพัฒนาฟีเจอร์ในอนาคตเพื่อสร้างมูลค่าเพิ่ม (Value Added)</h2>
+</div>
+<div class="content-wrapper">
+<!-- Phase 2 Band -->
+<div class="phase-band" style="border-left: 5px solid #0066CC;">
+<div class="phase-header phase-2-bg">
+<h3 class="phase-title">Phase 2</h3>
+<div class="phase-time"><i class="fa-regular fa-clock"></i> 6-12 เดือน</div>
+<i class="fa-solid fa-layer-group phase-icon-bg"></i>
+<div class="next-phase-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="phase-features">
+<!-- Feature 1 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p2">
+<i class="fa-solid fa-link"></i>
+</div>
+<div class="feature-name">Blockchain<br/>Authentication</div>
+<p class="feature-desc">เพิ่มความปลอดภัยระดับสูง ป้องกันการปลอมแปลง 100%</p>
+</div>
+<!-- Feature 2 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p2">
+<i class="fa-solid fa-truck-fast"></i>
+</div>
+<div class="feature-name">Supply Chain<br/>Tracking</div>
+<p class="feature-desc">ติดตามสถานะสินค้าตลอดห่วงโซ่อุปทาน (End-to-End)</p>
+</div>
+<!-- Feature 3 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p2">
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+<div class="feature-name">Auto-Recall<br/>System</div>
+<p class="feature-desc">แจ้งเตือนเรียกรคืนสินค้าอัตโนมัติถึงมือลูกค้าทันที</p>
+</div>
+</div>
+</div>
+<!-- Connector -->
+<!-- Phase 3 Band -->
+<div class="phase-band" style="border-left: 5px solid #00CC66;">
+<div class="phase-header phase-3-bg">
+<h3 class="phase-title">Phase 3</h3>
+<div class="phase-time"><i class="fa-regular fa-clock"></i> 12-24 เดือน</div>
+<i class="fa-solid fa-rocket phase-icon-bg"></i>
+</div>
+<div class="phase-features">
+<!-- Feature 1 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p3">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+</div>
+<div class="feature-name">Personalized<br/>Recommendations</div>
+<p class="feature-desc">แนะนำสินค้าที่เกี่ยวข้องจากประวัติการใช้งานจริง</p>
+</div>
+<!-- Feature 2 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p3">
+<i class="fa-solid fa-recycle"></i>
+</div>
+<div class="feature-name">Circular Economy<br/>Integration</div>
+<p class="feature-desc">ระบบซื้อขายต่อ (Resale) และ Trade-in แลกเก่าได้ใหม่</p>
+</div>
+<!-- Feature 3 -->
+<div class="feature-card">
+<div class="feature-icon-box icon-p3">
+<i class="fa-solid fa-users"></i>
+</div>
+<div class="feature-name">Community<br/>&amp; Reviews</div>
+<p class="feature-desc">สังคมผู้ใช้งานจริง รีวิวสินค้าที่ยืนยันการซื้อแล้ว</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

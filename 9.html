@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ความแตกต่างจากคู่แข่ง</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 50px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Comparison Table */
+        .table-container {
+            width: 100%;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #E2E8F0;
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Table Header */
+        .comp-table th {
+            padding: 20px;
+            text-align: center;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #475569;
+            background-color: #F8FAFC;
+            border-bottom: 2px solid #E2E8F0;
+            vertical-align: middle;
+            width: 20%;
+        }
+
+        .comp-table th.feature-col {
+            text-align: left;
+            padding-left: 30px;
+            width: 20%;
+            font-size: 1.2rem;
+            color: #1E293B;
+        }
+
+        .comp-table th.our-col {
+            background-color: #0066CC;
+            color: #FFFFFF;
+            font-size: 1.3rem;
+            border-bottom: none;
+            position: relative;
+            width: 25%;
+        }
+
+        .our-col-highlight {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00CC66;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Table Body */
+        .comp-table td {
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 1rem;
+            color: #64748B;
+        }
+
+        .comp-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comp-table td.feature-name {
+            text-align: left;
+            padding-left: 30px;
+            font-weight: 500;
+            color: #334155;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* Highlighting Our Solution Column */
+        .comp-table td.our-cell {
+            background-color: #F0F9FF;
+            color: #0066CC;
+            font-weight: 600;
+            border-left: 2px solid #0066CC;
+            border-right: 2px solid #0066CC;
+        }
+        
+        .comp-table tr:last-child td.our-cell {
+            border-bottom: 2px solid #0066CC;
+            border-radius: 0 0 12px 12px;
+        }
+
+        /* Status Icons */
+        .status-check {
+            color: #00CC66;
+            font-size: 1.5rem;
+        }
+        
+        .status-cross {
+            color: #EF4444;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+        
+        .status-warning {
+            color: #F59E0B;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .warning-text {
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        /* Price Row Styling */
+        .price-row td {
+            background-color: #F8FAFC;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            padding: 20px 10px;
+        }
+        
+        .price-row td.our-cell {
+            background-color: #0066CC;
+            color: white;
+            font-size: 1.3rem;
+            border: none;
+        }
+
+        /* Competitor Headers with Icons */
+        .competitor-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .competitor-icon {
+            font-size: 1.2rem;
+            color: #94A3B8;
+            margin-bottom: 5px;
+        }
+
+        /* Our Header with Logo */
+        .our-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .our-icon {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Competitive Analysis</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ทำไมเราถึงต่าง?</h1>
+<h2 class="subtitle">การเปรียบเทียบคุณสมบัติกับโซลูชันอื่นๆ ในตลาด</h2>
+</div>
+<div class="content-wrapper">
+<div class="table-container">
+<table class="comp-table">
+<thead>
+<tr>
+<th class="feature-col">ฟีเจอร์ / คุณสมบัติ</th>
+<th>
+<div class="competitor-header">
+<i class="fa-solid fa-qrcode competitor-icon"></i>
+<span>Anti-Counterfeit<br/>แบบดั้งเดิม</span>
+</div>
+</th>
+<th>
+<div class="competitor-header">
+<i class="fa-solid fa-file-contract competitor-icon"></i>
+<span>Warranty<br/>System</span>
+</div>
+</th>
+<th>
+<div class="competitor-header">
+<i class="fa-solid fa-mobile-screen competitor-icon"></i>
+<span>Product Info<br/>Apps</span>
+</div>
+</th>
+<th class="our-col">
+<div class="our-col-highlight">RECOMMENDED</div>
+<div class="our-header">
+<i class="fa-solid fa-passport our-icon"></i>
+<span>Digital Product<br/>Passport Lite</span>
+</div>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="feature-name">ยืนยันของแท้ (Authenticity)</td>
+<td><i class="fa-solid fa-circle-check status-check"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr>
+<td class="feature-name">ข้อมูลสินค้าครบถ้วน</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td>
+<div class="status-warning">
+<i class="fa-solid fa-triangle-exclamation"></i>
+<span class="warning-text">Generic Info</span>
+</div>
+</td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr>
+<td class="feature-name">รับประกันดิจิทัล (E-Warranty)</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-check status-check"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr>
+<td class="feature-name">ใช้งานง่าย (UX)</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-check status-check"></i></td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr>
+<td class="feature-name">บริการหลังขายครบวงจร</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td>
+<div class="status-warning">
+<i class="fa-solid fa-triangle-exclamation"></i>
+<span class="warning-text">Limited</span>
+</div>
+</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr>
+<td class="feature-name">Traceability &amp; ESG</td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td><i class="fa-solid fa-circle-xmark status-cross"></i></td>
+<td class="our-cell"><i class="fa-solid fa-circle-check status-check" style="color: #00CC66;"></i></td>
+</tr>
+<tr class="price-row">
+<td class="feature-name">ราคา / ความคุ้มค่า</td>
+<td>แพง (High Cost)</td>
+<td>ปานกลาง</td>
+<td>ฟรี (แต่ข้อมูลจำกัด)</td>
+<td class="our-cell">เริ่ม 5,000฿ / เดือน</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>กลุ่มเป้าหมาย</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 50px 50px;
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+            position: relative;
+        }
+
+        /* Split Background Line */
+        .split-line {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            bottom: 50px;
+            width: 2px;
+            background-color: #E2E8F0;
+            transform: translateX(-50%);
+            z-index: 0;
+            border-left: 2px dashed #CBD5E1;
+        }
+
+        /* VS Badge */
+        .vs-badge {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: #FFFFFF;
+            border: 4px solid #E2E8F0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 700;
+            color: #94A3B8;
+            font-size: 1.2rem;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Card Sides */
+        .target-card {
+            flex: 1;
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .card-b2b {
+            background-color: #F0F9FF; /* Light Blue tint */
+            border: 1px solid #BAE6FD;
+        }
+
+        .card-b2c {
+            background-color: #F0FDF4; /* Light Green tint */
+            border: 1px solid #BBF7D0;
+        }
+
+        .target-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+        }
+
+        .header-icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .icon-b2b { background-color: #0066CC; color: white; }
+        .icon-b2c { background-color: #00CC66; color: white; }
+
+        .header-text h3 {
+            font-family: 'Kanit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        .header-text p {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .text-b2b { color: #0066CC; }
+        .text-b2c { color: #00CC66; }
+        .sub-b2b { color: #60A5FA; }
+        .sub-b2c { color: #4ADE80; }
+
+        /* List Styling */
+        .target-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .list-group-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #475569;
+            margin-top: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .list-item {
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #334155;
+            font-weight: 500;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.2s;
+        }
+        
+        .list-item:hover {
+            background-color: #FFFFFF;
+            transform: translateX(5px);
+        }
+
+        .emoji-icon {
+            font-size: 1.4rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Demographic Tags */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .tag-b2b { background-color: #DBEAFE; color: #1E40AF; }
+        .tag-b2c { background-color: #DCFCE7; color: #166534; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Target Audience Analysis</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ใครคือลูกค้าของเรา?</h1>
+<h2 class="subtitle">โซลูชันที่ตอบโจทย์ทั้งผู้ประกอบการและผู้บริโภค</h2>
+</div>
+<div class="content-wrapper">
+<div class="split-line"></div>
+<div class="vs-badge">&amp;</div>
+<!-- Left Side: B2B -->
+<div class="target-card card-b2b">
+<div class="card-header">
+<div class="header-icon-box icon-b2b">
+<i class="fa-solid fa-building"></i>
+</div>
+<div class="header-text">
+<h3 class="text-b2b">B2B</h3>
+<p class="sub-b2b">แบรนด์ / ร้านค้า / ผู้ผลิต</p>
+</div>
+</div>
+<div class="target-list">
+<div class="list-group-title"><i class="fa-solid fa-star text-b2b"></i> Primary Target</div>
+<div class="list-item">
+<span class="emoji-icon">💄</span>
+<p>เครื่องสำอาง &amp; ความงาม</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">💊</span>
+<p>อาหารเสริม &amp; วิตามิน</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">📱</span>
+<p>อุปกรณ์อิเล็กทรอนิกส์ &amp; Gadget</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">👶</span>
+<p>สินค้าแม่และเด็ก</p>
+</div>
+<div class="list-group-title"><i class="fa-solid fa-bullseye text-b2b"></i> Secondary Target</div>
+<div class="tags-container">
+<span class="tag tag-b2b">แฟชั่น/แบรนด์เนม 👜</span>
+<span class="tag tag-b2b">อุปกรณ์กีฬา 🏃</span>
+<span class="tag tag-b2b">เครื่องใช้ไฟฟ้า 🏠</span>
+</div>
+</div>
+</div>
+<!-- Right Side: B2C -->
+<div class="target-card card-b2c">
+<div class="card-header">
+<div class="header-icon-box icon-b2c">
+<i class="fa-solid fa-users"></i>
+</div>
+<div class="header-text">
+<h3 class="text-b2c">B2C</h3>
+<p class="sub-b2c">ผู้บริโภค / End Users</p>
+</div>
+</div>
+<div class="target-list">
+<div class="list-group-title"><i class="fa-solid fa-user-tag text-b2c"></i> Persona</div>
+<div class="list-item">
+<span class="emoji-icon">🧑‍💻</span>
+<p>Gen Z &amp; Millennials (18-40 ปี)</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">💰</span>
+<p>รายได้ปานกลาง - สูง</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">🛡️</span>
+<p>ใส่ใจคุณภาพ &amp; ความปลอดภัย</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">🌱</span>
+<p>สนใจ ESG &amp; Sustainability</p>
+</div>
+<div class="list-item">
+<span class="emoji-icon">📱</span>
+<p>ชำนาญเทคโนโลยี (Tech-Savvy)</p>
+</div>
+<div class="tags-container" style="margin-top: auto;">
+<span class="tag tag-b2c">ซื้อสินค้าพรีเมียม</span>
+<span class="tag tag-b2c">ชอบความสะดวก</span>
+<span class="tag tag-b2c">ต้องการความมั่นใจ</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>วิธีการทำงาน - สำหรับแบรนด์</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            text-align: right;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 50px 50px;
+            display: flex;
+            gap: 40px;
+        }
+
+        /* Steps Container */
+        .steps-container {
+            flex: 0.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            background-color: #F8FAFC;
+            border-radius: 16px;
+            padding: 15px 20px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-item:hover {
+            transform: translateX(10px);
+            background-color: #FFFFFF;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.1);
+            border-color: #0066CC;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #0066CC;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 5px;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: #64748B;
+            line-height: 1.4;
+        }
+
+        .step-icon-right {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #CBD5E1;
+        }
+
+        /* Highlight specific step colors */
+        .step-1 .step-number { background-color: #0066CC; }
+        .step-2 .step-number { background-color: #0099FF; }
+        .step-3 .step-number { background-color: #00CC66; }
+        .step-4 .step-number { background-color: #F59E0B; }
+
+        .step-item:hover .step-icon-right {
+            color: #0066CC;
+        }
+
+        /* Right Dashboard Mockup */
+        .dashboard-container {
+            flex: 0.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .dashboard-mockup {
+            width: 100%;
+            height: 100%;
+            background-color: #F1F5F9;
+            border-radius: 20px;
+            border: 2px solid #E2E8F0;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .dashboard-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Connector Line */
+        .connector-line {
+            position: absolute;
+            left: 45px;
+            top: 40px;
+            bottom: 40px;
+            width: 2px;
+            background-color: #E2E8F0;
+            z-index: 0;
+        }
+        
+        /* Floating Badge */
+        .floating-badge {
+            position: absolute;
+            bottom: 30px;
+            right: -20px;
+            background-color: #FFFFFF;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+            border-left: 5px solid #00CC66;
+        }
+        
+        .badge-icon {
+            font-size: 2rem;
+            color: #00CC66;
+        }
+        
+        .badge-text strong {
+            display: block;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.2rem;
+            color: #1E293B;
+        }
+        
+        .badge-text span {
+            font-size: 0.9rem;
+            color: #64748B;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Brand Onboarding Process</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ง่ายสำหรับแบรนด์ด้วย</h1>
+<div class="subtitle">ระบบหลังบ้านที่ออกแบบมาเพื่อความสะดวก รวดเร็ว และแม่นยำ</div>
+</div>
+<div class="content-wrapper">
+<!-- Steps Left Side -->
+<div class="steps-container" style="position: relative;">
+<div class="connector-line"></div>
+<!-- Step 1 -->
+<div class="step-item step-1" style="z-index: 2;">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3 class="step-title">อัพโหลดข้อมูลสินค้า</h3>
+<p class="step-desc">Dashboard ใช้งานง่าย Import ข้อมูลสินค้าจาก Excel (Bulk) ได้ทันที เพิ่มรูปภาพ คู่มือ และวิดีโอ</p>
+</div>
+<div class="step-icon-right"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+</div>
+<!-- Step 2 -->
+<div class="step-item step-2" style="z-index: 2;">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3 class="step-title">สร้าง QR Code</h3>
+<p class="step-desc">ระบบสร้างอัตโนมัติ ดาวน์โหลดเป็นไฟล์ PDF สำหรับพิมพ์ หรือเชื่อมต่อ API กับระบบการพิมพ์ของโรงงาน</p>
+</div>
+<div class="step-icon-right"><i class="fa-solid fa-qrcode"></i></div>
+</div>
+<!-- Step 3 -->
+<div class="step-item step-3" style="z-index: 2;">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3 class="step-title">ติด QR บนสินค้า</h3>
+<p class="step-desc">ติดบนกล่องหรือบรรจุภัณฑ์ สติกเกอร์คุณภาพสูง กันน้ำ ทนทาน รองรับการใช้งานยาวนาน</p>
+</div>
+<div class="step-icon-right"><i class="fa-solid fa-box"></i></div>
+</div>
+<!-- Step 4 -->
+<div class="step-item step-4" style="z-index: 2;">
+<div class="step-number">4</div>
+<div class="step-content">
+<h3 class="step-title">ดู Analytics</h3>
+<p class="step-desc">ติดตามจำนวนการสแกน พื้นที่ยอดนิยม สินค้าขายดี และแจ้งเตือนกิจกรรมที่ผิดปกติแบบ Real-time</p>
+</div>
+<div class="step-icon-right"><i class="fa-solid fa-chart-line"></i></div>
+</div>
+</div>
+<!-- Dashboard Right Side -->
+<div class="dashboard-container">
+<div class="dashboard-mockup">
+<img alt="Brand Dashboard displaying analytics and product data" class="dashboard-img" src="https://www.genspark.ai/api/files/s/TBhF8CG6?cache_control=3600"/>
+</div>
+<div class="floating-badge">
+<div class="badge-icon"><i class="fa-solid fa-check-circle"></i></div>
+<div class="badge-text">
+<p><strong>Ready to Use</strong></p>
+<p>เริ่มใช้งานได้ใน 1 วัน</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

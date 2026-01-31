@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Features หลัก (Phase 1)</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+            text-align: right;
+            padding-bottom: 5px;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 50px 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Grid Layout */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 25px;
+            height: 100%;
+        }
+
+        .feature-card {
+            background-color: #F8FAFC;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background-color: #FFFFFF;
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1);
+            border-color: #0066CC;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1E293B;
+            line-height: 1.2;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            color: #64748B;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        /* Specific Card Styles */
+        /* Card 1: Authenticity */
+        .card-auth { border-top: 4px solid #00CC66; }
+        .icon-auth { background-color: #ECFDF5; color: #00CC66; }
+
+        /* Card 2: Manual */
+        .card-manual { border-top: 4px solid #0066CC; }
+        .icon-manual { background-color: #EFF6FF; color: #0066CC; }
+
+        /* Card 3: Warranty */
+        .card-warranty { border-top: 4px solid #F59E0B; }
+        .icon-warranty { background-color: #FFFBEB; color: #F59E0B; }
+
+        /* Card 4: Service */
+        .card-service { border-top: 4px solid #8B5CF6; }
+        .icon-service { background-color: #F5F3FF; color: #8B5CF6; }
+
+        /* Card 5: Sustainability */
+        .card-sustain { border-top: 4px solid #10B981; }
+        .icon-sustain { background-color: #D1FAE5; color: #10B981; }
+
+        /* Card 6: Analytics */
+        .card-analytics { border-top: 4px solid #EF4444; }
+        .icon-analytics { background-color: #FEF2F2; color: #EF4444; }
+
+        /* Badge Phase 1 */
+        .phase-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: #E0F2FE;
+            color: #0369A1;
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            opacity: 0.8;
+        }
+
+        /* Decorative circles */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            background-color: rgba(0, 102, 204, 0.03);
+            top: -100px;
+            right: -100px;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background-color: rgba(0, 204, 102, 0.03);
+            bottom: -50px;
+            left: -50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Core Features</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ฟีเจอร์หลัก - เริ่มใช้งานได้ทันที</h1>
+<div class="subtitle">Phase 1: Foundation Features (Available Now)</div>
+</div>
+<div class="content-wrapper">
+<div class="bg-circle circle-1"></div>
+<div class="bg-circle circle-2"></div>
+<div class="features-grid">
+<!-- Feature 1: Authenticity Check -->
+<div class="feature-card card-auth">
+<div class="phase-badge">Core</div>
+<div class="card-top">
+<div class="icon-box icon-auth">
+<i class="fa-solid fa-circle-check"></i>
+</div>
+<h3 class="feature-title">Authenticity Check<br/>ยืนยันของแท้</h3>
+</div>
+<p class="feature-desc">ระบบตรวจสอบสินค้าของแท้ผ่าน QR Code ที่ไม่สามารถปลอมแปลงได้ ช่วยสร้างความมั่นใจให้กับผู้ซื้อได้ทันทีที่สแกน</p>
+</div>
+<!-- Feature 2: Digital Manual -->
+<div class="feature-card card-manual">
+<div class="phase-badge">Standard</div>
+<div class="card-top">
+<div class="icon-box icon-manual">
+<i class="fa-solid fa-book-open"></i>
+</div>
+<h3 class="feature-title">Digital Manual<br/>คู่มือดิจิทัล</h3>
+</div>
+<p class="feature-desc">บอกลาคู่มือกระดาษหนาเตอะ ด้วยคู่มือออนไลน์ที่ค้นหาง่าย รองรับหลายภาษา พร้อมวิดีโอสาธิตการใช้งานที่เข้าใจง่าย</p>
+</div>
+<!-- Feature 3: Digital Warranty -->
+<div class="feature-card card-warranty">
+<div class="phase-badge">Value</div>
+<div class="card-top">
+<div class="icon-box icon-warranty">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<h3 class="feature-title">Digital Warranty<br/>รับประกันออนไลน์</h3>
+</div>
+<p class="feature-desc">ลงทะเบียนรับประกันง่ายๆ ผ่านมือถือ ไม่ต้องเก็บใบเสร็จ ระบบแจ้งเตือนเมื่อใกล้หมดประกันและเสนอต่ออายุอัตโนมัติ</p>
+</div>
+<!-- Feature 4: Service Connect -->
+<div class="feature-card card-service">
+<div class="phase-badge">Support</div>
+<div class="card-top">
+<div class="icon-box icon-service">
+<i class="fa-solid fa-headset"></i>
+</div>
+<h3 class="feature-title">Service Connect<br/>ติดต่อศูนย์บริการ</h3>
+</div>
+<p class="feature-desc">ปุ่มลัดสำหรับติดต่อศูนย์บริการ แจ้งซ่อม หรือเคลมสินค้า พร้อมระบบติดตามสถานะงานซ่อมแบบ Real-time</p>
+</div>
+<!-- Feature 5: Sustainability Info -->
+<div class="feature-card card-sustain">
+<div class="phase-badge">ESG</div>
+<div class="card-top">
+<div class="icon-box icon-sustain">
+<i class="fa-solid fa-leaf"></i>
+</div>
+<h3 class="feature-title">Sustainability Info<br/>ข้อมูลความยั่งยืน</h3>
+</div>
+<p class="feature-desc">แสดงที่มาของวัตถุดิบ (Traceability) Carbon Footprint และวิธีการรีไซเคิล ตอบโจทย์ผู้บริโภครักษ์โลก</p>
+</div>
+<!-- Feature 6: Analytics -->
+<div class="feature-card card-analytics">
+<div class="phase-badge">Data</div>
+<div class="card-top">
+<div class="icon-box icon-analytics">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+<h3 class="feature-title">Analytics Dashboard<br/>วิเคราะห์ข้อมูล</h3>
+</div>
+<p class="feature-desc">Dashboard สำหรับแบรนด์ ดูสถิติการสแกน พื้นที่ใช้งาน และพฤติกรรมลูกค้า เพื่อนำไปวางแผนการตลาดแม่นยำ</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

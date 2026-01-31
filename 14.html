@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk &amp; Mitigation</title>
+<link rel="icon" href="logo.png" type="image/png">
+<!-- Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<!-- FontAwesome -->
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 60px 50px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Risk Row */
+        .risk-row {
+            display: flex;
+            align-items: stretch;
+            background-color: #F8FAFC;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+            height: 85px; /* Fixed height for consistency */
+        }
+
+        .risk-row:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: #CBD5E1;
+        }
+
+        /* Risk Side (Left) */
+        .risk-side {
+            flex: 0.4;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            background-color: #FEF2F2; /* Light Red tint */
+            border-right: 1px solid #FECACA;
+            position: relative;
+        }
+
+        .risk-icon-box {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background-color: #EF4444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .risk-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .risk-label {
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.9rem;
+            color: #EF4444;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .risk-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.3rem;
+            color: #7F1D1D;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Connector (Arrow) */
+        .connector {
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94A3B8;
+            background-color: #FFFFFF;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .connector::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: repeating-linear-gradient(to right, #E2E8F0 0, #E2E8F0 5px, transparent 5px, transparent 10px);
+            z-index: -1;
+        }
+        
+        .arrow-circle {
+            width: 30px;
+            height: 30px;
+            background-color: #F1F5F9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mitigation Side (Right) */
+        .mitigation-side {
+            flex: 0.6;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            background-color: #F0FDF4; /* Light Green tint */
+            border-left: 1px solid #BBF7D0;
+        }
+
+        .mitigation-icon-box {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background-color: #00CC66;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .mitigation-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mitigation-label {
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.9rem;
+            color: #00CC66;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mitigation-desc {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1.1rem;
+            color: #064E3B;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Decorative circles */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .circle-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(239, 68, 68, 0.03); /* Red tint */
+            bottom: -200px;
+            left: -150px;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background-color: rgba(0, 204, 102, 0.03); /* Green tint */
+            top: -100px;
+            right: -100px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Risk Analysis</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ความเสี่ยง และวิธีจัดการ</h1>
+<h2 class="subtitle">การประเมินความเสี่ยงและแผนรับมืออย่างเป็นระบบ</h2>
+</div>
+<div class="bg-circle circle-1"></div>
+<div class="bg-circle circle-2"></div>
+<div class="content-wrapper">
+<!-- Row 1: Regulatory -->
+<div class="risk-row">
+<div class="risk-side">
+<div class="risk-icon-box"><i class="fa-solid fa-gavel"></i></div>
+<div class="risk-text-group">
+<span class="risk-label">Risk 01</span>
+<span class="risk-title">Regulatory Changes</span>
+</div>
+</div>
+<div class="connector">
+<div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="mitigation-side">
+<div class="mitigation-icon-box"><i class="fa-solid fa-shield-check"></i></div>
+<div class="mitigation-text-group">
+<span class="mitigation-label">Mitigation</span>
+<p class="mitigation-desc">ติดตามกฎระเบียบใกล้ชิด (EU DPP) และจับมือพาร์ตเนอร์ผู้เชี่ยวชาญท้องถิ่น</p>
+</div>
+</div>
+</div>
+<!-- Row 2: Competition -->
+<div class="risk-row">
+<div class="risk-side">
+<div class="risk-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+<div class="risk-text-group">
+<span class="risk-label">Risk 02</span>
+<span class="risk-title">Competition</span>
+</div>
+</div>
+<div class="connector">
+<div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="mitigation-side">
+<div class="mitigation-icon-box"><i class="fa-solid fa-rocket"></i></div>
+<div class="mitigation-text-group">
+<span class="mitigation-label">Mitigation</span>
+<p class="mitigation-desc">สร้างความได้เปรียบแบบ First-mover และสร้าง Network Effect จากฐานข้อมูลสินค้า</p>
+</div>
+</div>
+</div>
+<!-- Row 3: Technology -->
+<div class="risk-row">
+<div class="risk-side">
+<div class="risk-icon-box"><i class="fa-solid fa-microchip"></i></div>
+<div class="risk-text-group">
+<span class="risk-label">Risk 03</span>
+<span class="risk-title">Technology Stability</span>
+</div>
+</div>
+<div class="connector">
+<div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="mitigation-side">
+<div class="mitigation-icon-box"><i class="fa-solid fa-code"></i></div>
+<div class="mitigation-text-group">
+<span class="mitigation-label">Mitigation</span>
+<p class="mitigation-desc">ใช้เทคโนโลยีที่พิสูจน์แล้ว (Proven Tech) และออกแบบระบบแบบ Modular เพื่อความยืดหยุ่น</p>
+</div>
+</div>
+</div>
+<!-- Row 4: Culture/Language -->
+<div class="risk-row">
+<div class="risk-side">
+<div class="risk-icon-box"><i class="fa-solid fa-language"></i></div>
+<div class="risk-text-group">
+<span class="risk-label">Risk 04</span>
+<span class="risk-title">Culture &amp; Language</span>
+</div>
+</div>
+<div class="connector">
+<div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="mitigation-side">
+<div class="mitigation-icon-box"><i class="fa-solid fa-earth-asia"></i></div>
+<div class="mitigation-text-group">
+<span class="mitigation-label">Mitigation</span>
+<p class="mitigation-desc">สร้างทีมท้องถิ่น (Local Teams) และพัฒนาแพลตฟอร์มรองรับหลายภาษา (Multi-language)</p>
+</div>
+</div>
+</div>
+<!-- Row 5: Financial -->
+<div class="risk-row">
+<div class="risk-side">
+<div class="risk-icon-box"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+<div class="risk-text-group">
+<span class="risk-label">Risk 05</span>
+<span class="risk-title">Financial Sustainability</span>
+</div>
+</div>
+<div class="connector">
+<div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+</div>
+<div class="mitigation-side">
+<div class="mitigation-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
+<div class="mitigation-text-group">
+<span class="mitigation-label">Mitigation</span>
+<p class="mitigation-desc">เน้น Break-even ในตลาดไทยก่อนขยายตัว และเตรียมแผน Fundraising อย่างเป็นระบบ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

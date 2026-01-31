@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>แผนขยายตลาด (Expansion Plan)</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 30px 50px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            flex: 1;
+            padding: 20px 60px 60px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Timeline Track */
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            right: 100px;
+            height: 4px;
+            background-color: #E2E8F0;
+            transform: translateY(-50%);
+            z-index: 0;
+            border-radius: 4px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%; /* Visual progress */
+            height: 100%;
+            background: linear-gradient(90deg, #0066CC 0%, #00CC66 100%);
+            border-radius: 4px;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            height: 100%;
+            padding-top: 20px; /* Offset for floating badges */
+        }
+
+        /* Individual Card */
+        .phase-card {
+            width: 30%;
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #F1F5F9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Card Connection Node */
+        .timeline-node {
+            position: absolute;
+            top: 50%;
+            left: -18px; /* For middle/last cards */
+            width: 36px;
+            height: 36px;
+            background-color: white;
+            border-radius: 50%;
+            border: 4px solid #CBD5E1;
+            z-index: 5;
+            display: none; /* Hidden by default, shown based on logic if needed */
+        }
+
+        /* Year Badge (Floating Top) */
+        .year-badge {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 24px;
+            border-radius: 30px;
+            color: white;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            white-space: nowrap;
+        }
+
+        /* Card Content */
+        .card-icon {
+            font-size: 3rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1E293B;
+        }
+
+        .card-subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            color: #64748B;
+            margin-bottom: 20px;
+            background-color: #F8FAFC;
+            padding: 4px 12px;
+            border-radius: 10px;
+        }
+
+        .metrics-list {
+            width: 100%;
+            text-align: left;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: #334155;
+            background-color: #F8FAFC;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .metric-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-icon {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .highlight-text {
+            font-weight: 600;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* Phase Specific Styles */
+        /* Phase 1: Thailand */
+        .phase-1 { border-bottom: 5px solid #0066CC; }
+        .phase-1 .year-badge { background-color: #0066CC; }
+        .phase-1 .card-icon { color: #0066CC; }
+        .phase-1 .metric-icon { color: #0066CC; }
+        .phase-1 .highlight-text { color: #0066CC; }
+
+        /* Phase 2: SEA */
+        .phase-2 { border-bottom: 5px solid #00CC66; }
+        .phase-2 .year-badge { background-color: #00CC66; }
+        .phase-2 .card-icon { color: #00CC66; }
+        .phase-2 .metric-icon { color: #00CC66; }
+        .phase-2 .highlight-text { color: #00CC66; }
+
+        /* Phase 3: Global */
+        .phase-3 { border-bottom: 5px solid #0EA5E9; }
+        .phase-3 .year-badge { background-color: #0EA5E9; }
+        .phase-3 .card-icon { color: #0EA5E9; }
+        .phase-3 .metric-icon { color: #0EA5E9; }
+        .phase-3 .highlight-text { color: #0EA5E9; }
+
+        /* Connecting Arrows */
+        .arrow-connector {
+            flex: 1;
+            height: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .arrow-icon {
+            color: #94A3B8;
+            font-size: 1.5rem;
+            background-color: #F0F4F8;
+            padding: 0 10px;
+        }
+
+        /* Background Decor */
+        .world-map-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 80%;
+            opacity: 0.05;
+            background-image: url("https://www.genspark.ai/image_placeholder.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Expansion Strategy</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">จากไทย สู่สากล</h1>
+<h2 class="subtitle">แผนขยายตลาด 5 ปี (5-Year Roadmap)</h2>
+</div>
+<div class="content-wrapper">
+<div class="world-map-bg"></div>
+<!-- Cards -->
+<div class="cards-container">
+<!-- Phase 1 -->
+<div class="phase-card phase-1">
+<div class="year-badge">Year 1-2</div>
+<i class="fa-solid fa-location-dot card-icon"></i>
+<h3 class="card-title">Thailand</h3>
+<div class="card-subtitle">Bangkok &amp; Major Cities</div>
+<div class="metrics-list">
+<div class="metric-item">
+<i class="fa-solid fa-flask metric-icon"></i>
+<p>Pilot <span class="highlight-text">5-10 Brands</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-store metric-icon"></i>
+<p>ขยาย <span class="highlight-text">100+ Brands</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-tags metric-icon"></i>
+<p>Tagged <span class="highlight-text">1M+ Products</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-coins metric-icon"></i>
+<p>Goal: <span class="highlight-text">Break-even</span></p>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="arrow-connector">
+<i class="fa-solid fa-chevron-right arrow-icon"></i>
+<i class="fa-solid fa-chevron-right arrow-icon" style="margin-left: -5px; opacity: 0.5;"></i>
+</div>
+<!-- Phase 2 -->
+<div class="phase-card phase-2">
+<div class="year-badge">Year 2-3</div>
+<i class="fa-solid fa-earth-asia card-icon"></i>
+<h3 class="card-title">Southeast Asia</h3>
+<div class="card-subtitle">Singapore, Vietnam, Malaysia</div>
+<div class="metrics-list">
+<div class="metric-item">
+<i class="fa-solid fa-arrow-trend-up metric-icon"></i>
+<p>Scale to <span class="highlight-text">500+ Brands</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-box-open metric-icon"></i>
+<p>Tagged <span class="highlight-text">10M+ Products</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-users metric-icon"></i>
+<p>Focus: <span class="highlight-text">Tech-Savvy Users</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-star-half-stroke metric-icon"></i>
+<p>Potential: <span class="highlight-text">Halal Products</span></p>
+</div>
+</div>
+</div>
+<!-- Arrow -->
+<div class="arrow-connector">
+<i class="fa-solid fa-chevron-right arrow-icon"></i>
+<i class="fa-solid fa-chevron-right arrow-icon" style="margin-left: -5px; opacity: 0.5;"></i>
+</div>
+<!-- Phase 3 -->
+<div class="phase-card phase-3">
+<div class="year-badge">Year 4-5</div>
+<i class="fa-solid fa-globe card-icon"></i>
+<h3 class="card-title">Global</h3>
+<div class="card-subtitle">Europe (EU) &amp; North America</div>
+<div class="metrics-list">
+<div class="metric-item">
+<i class="fa-solid fa-certificate metric-icon"></i>
+<p>EU <span class="highlight-text">DPP Compliance</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-building metric-icon"></i>
+<p>Scale to <span class="highlight-text">2,000+ Brands</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-barcode metric-icon"></i>
+<p>Tagged <span class="highlight-text">100M+ Products</span></p>
+</div>
+<div class="metric-item">
+<i class="fa-solid fa-money-bill-trend-up metric-icon"></i>
+<p>Series <span class="highlight-text">A/B Funding</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Call to Action</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 10px 50px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 0 50px 20px 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* Columns */
+        .cta-column {
+            flex: 1;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-column:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Column Specifics */
+        .col-vision { border-top: 6px solid #0066CC; background-color: #F8FAFC; }
+        .col-steps { border-top: 6px solid #00CC66; background-color: #F0FDF4; }
+        .col-need { border-top: 6px solid #F59E0B; background-color: #FFFBEB; }
+
+        .col-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .icon-vision { background-color: #0066CC; }
+        .icon-steps { background-color: #00CC66; }
+        .icon-need { background-color: #F59E0B; }
+
+        .col-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1E293B;
+            margin-bottom: 15px;
+        }
+
+        .col-desc {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        /* Vision Text */
+        .vision-quote {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.25rem;
+            color: #0066CC;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* List Items */
+        .cta-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .cta-list-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .cta-list-item:last-child { border-bottom: none; }
+
+        .cta-list-icon {
+            margin-right: 12px;
+            font-size: 1rem;
+        }
+
+        .steps-icon { color: #00CC66; }
+        .need-icon { color: #F59E0B; }
+
+        /* Footer / Button Section */
+        .footer-cta {
+            height: 140px;
+            background-color: #1E293B;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: auto;
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .cta-button {
+            background-color: #0066CC;
+            color: white;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            padding: 12px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            z-index: 10;
+        }
+
+        .cta-button:hover {
+            background-color: #0052A3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            color: #94A3B8;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            z-index: 10;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: #00CC66;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Join Us</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ร่วมสร้างอนาคต Retail ที่น่าเชื่อถือ</h1>
+</div>
+<div class="content-wrapper">
+<!-- Column 1: Vision -->
+<div class="cta-column col-vision">
+<div class="col-icon icon-vision">
+<i class="fa-solid fa-eye"></i>
+</div>
+<h3 class="col-title">Vision</h3>
+<div class="col-desc">
+<p class="vision-quote">"ทำให้ทุกสินค้ามี Digital Passport สร้างความเชื่อมั่น โปร่งใส และยั่งยืน"</p>
+<p style="margin-top: 15px; font-size: 0.95rem;">ยกระดับมาตรฐานสินค้าไทยสู่สากลด้วยเทคโนโลยีที่เข้าถึงง่าย</p>
+</div>
+</div>
+<!-- Column 2: Next Steps -->
+<div class="cta-column col-steps">
+<div class="col-icon icon-steps">
+<i class="fa-solid fa-forward-step"></i>
+</div>
+<h3 class="col-title">Next Steps</h3>
+<ul class="cta-list">
+<li class="cta-list-item">
+<i class="fa-solid fa-check-circle cta-list-icon steps-icon"></i>
+<p>พัฒนา MVP (3 เดือน)</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-check-circle cta-list-icon steps-icon"></i>
+<p>Pilot กับ 5 แบรนด์นำร่อง</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-check-circle cta-list-icon steps-icon"></i>
+<p>Validate Product-Market Fit</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-check-circle cta-list-icon steps-icon"></i>
+<p>Fundraising Seed Round</p>
+</li>
+</ul>
+</div>
+<!-- Column 3: We Need -->
+<div class="cta-column col-need">
+<div class="col-icon icon-need">
+<i class="fa-solid fa-hand-holding-heart"></i>
+</div>
+<h3 class="col-title">We Need</h3>
+<ul class="cta-list">
+<li class="cta-list-item">
+<i class="fa-solid fa-sack-dollar cta-list-icon need-icon"></i>
+<p><strong>Funding:</strong> 5-10M THB</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-chalkboard-user cta-list-icon need-icon"></i>
+<p><strong>Mentorship:</strong> Retail Experts</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-handshake cta-list-icon need-icon"></i>
+<p><strong>Partnerships:</strong> Brands &amp; Retailers</p>
+</li>
+<li class="cta-list-item">
+<i class="fa-solid fa-people-group cta-list-icon need-icon"></i>
+<p><strong>Talent:</strong> Tech, Sales, Support</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- Footer CTA -->
+<div class="footer-cta">
+<div class="bg-pattern"></div>
+<button class="cta-button">
+<span>Let's Build Trust Together</span>
+<i class="fa-solid fa-arrow-right"></i>
+</button>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fa-solid fa-envelope"></i>
+<span>contact@digitalproductpassport.co</span>
+</div>
+<div class="contact-item">
+<i class="fa-solid fa-globe"></i>
+<span>www.digitalproductpassport.co</span>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

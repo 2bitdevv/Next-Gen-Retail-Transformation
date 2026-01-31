@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>วิกฤตความไม่ไว้วางใจในสินค้า</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 20px 50px;
+            border-bottom: 1px solid #E2E8F0;
+            margin-bottom: 30px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.5rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            padding: 0 50px 50px 50px;
+            gap: 30px;
+        }
+
+        .column-card {
+            flex: 1;
+            background-color: #F8FAFC;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .column-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1);
+            border-color: #0066CC;
+        }
+
+        /* Card Header */
+        .card-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .icon-consumer {
+            background-color: #FEF2F2;
+            color: #EF4444;
+        }
+
+        .icon-data {
+            background-color: #F0F9FF;
+            color: #0066CC;
+        }
+
+        .icon-service {
+            background-color: #FFF7ED;
+            color: #F97316;
+        }
+
+        .card-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        /* List Items */
+        .issue-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .issue-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+            color: #475569;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .bullet-point {
+            min-width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 8px;
+            margin-right: 12px;
+        }
+
+        .bullet-consumer { background-color: #EF4444; }
+        .bullet-data { background-color: #0066CC; }
+        .bullet-service { background-color: #F97316; }
+
+        /* Highlight Box */
+        .stat-highlight {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: auto;
+            border-left: 4px solid;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .highlight-consumer { border-left-color: #EF4444; }
+        .highlight-data { border-left-color: #0066CC; }
+        .highlight-service { border-left-color: #F97316; }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .color-consumer { color: #EF4444; }
+        .color-data { color: #0066CC; }
+        .color-service { color: #F97316; }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748B;
+            font-weight: 400;
+        }
+        
+        /* Decorative circle */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .bg-c1 {
+            width: 300px;
+            height: 300px;
+            background-color: #0066CC;
+            top: -50px;
+            right: -50px;
+        }
+        
+        .bg-c2 {
+            width: 200px;
+            height: 200px;
+            background-color: #EF4444;
+            bottom: -50px;
+            left: -50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>Problem Statement</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">วิกฤตความไม่ไว้วางใจในสินค้า</h1>
+<h2 class="subtitle">ปัญหาที่ผู้บริโภคและแบรนด์กำลังเผชิญร่วมกัน</h2>
+</div>
+<div class="content-wrapper">
+<!-- Column 1 -->
+<div class="column-card">
+<div class="bg-circle bg-c2"></div>
+<div class="card-icon-wrapper icon-consumer">
+<i class="fa-regular fa-face-frown-open"></i>
+</div>
+<h3 class="card-title">ผู้บริโภคกลัวของปลอม</h3>
+<ul class="issue-list">
+<li class="issue-item">
+<span class="bullet-point bullet-consumer"></span>
+<p>สินค้าปลอมระบาดหนักในกลุ่มเครื่องสำอางและอิเล็กทรอนิกส์</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-consumer"></span>
+<p>ไม่มีวิธีตรวจสอบที่ง่ายและเชื่อถือได้ด้วยตนเอง</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-consumer"></span>
+<p>ความเสี่ยงด้านความปลอดภัยและคุณภาพต่ำ</p>
+</li>
+</ul>
+<div class="stat-highlight highlight-consumer">
+<span class="stat-value color-consumer">40,000+</span>
+<span class="stat-label">ล้านบาท/ปี มูลค่าสินค้าปลอมในไทย</span>
+</div>
+</div>
+<!-- Column 2 -->
+<div class="column-card">
+<div class="card-icon-wrapper icon-data">
+<i class="fa-regular fa-file-lines"></i>
+</div>
+<h3 class="card-title">ข้อมูลสินค้ากระจัดกระจาย</h3>
+<ul class="issue-list">
+<li class="issue-item">
+<span class="bullet-point bullet-data"></span>
+<p>คู่มือหาย อ่านยาก หรือเป็นภาษาต่างประเทศ</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-data"></span>
+<p>ใบรับประกันกระดาษสูญหาย ทำให้เคลมไม่ได้</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-data"></span>
+<p>ผู้บริโภคไม่ทราบที่มา หรือข้อมูลความยั่งยืน (ESG)</p>
+</li>
+</ul>
+<div class="stat-highlight highlight-data">
+<span class="stat-value color-data">Paper-based</span>
+<span class="stat-label">ระบบเอกสารเดิมที่ไม่มีประสิทธิภาพ</span>
+</div>
+</div>
+<!-- Column 3 -->
+<div class="column-card">
+<div class="bg-circle bg-c1"></div>
+<div class="card-icon-wrapper icon-service">
+<i class="fa-solid fa-headset"></i>
+</div>
+<h3 class="card-title">บริการหลังขายไม่ดี</h3>
+<ul class="issue-list">
+<li class="issue-item">
+<span class="bullet-point bullet-service"></span>
+<p>ติดต่อศูนย์บริการยาก ขั้นตอนซับซ้อน</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-service"></span>
+<p>ไม่มีช่องทางแจ้งเตือนเมื่อมีการเรียกคืนสินค้า (Recall)</p>
+</li>
+<li class="issue-item">
+<span class="bullet-point bullet-service"></span>
+<p>แบรนด์พลาดโอกาสในการดูแลและ Upsell ลูกค้าเก่า</p>
+</li>
+</ul>
+<div class="stat-highlight highlight-service">
+<span class="stat-value color-service">Missed Opps</span>
+<span class="stat-label">โอกาสทางธุรกิจที่สูญเสียไป</span>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>วิธีการทำงาน - สำหรับผู้บริโภค</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&amp;family=Sarabun:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<script src="nav.js" defer></script>
+<style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background-color: #F0F4F8;
+        }
+        
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header-bar {
+            height: 15px;
+            background-color: #0066CC;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px 10px 50px;
+            font-family: 'Kanit', sans-serif;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            padding: 0 50px 10px 50px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #0066CC;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.4rem;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            flex: 1;
+            padding: 20px 50px 50px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timeline-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        /* Connecting Line */
+        .timeline-line {
+            position: absolute;
+            top: 55px;
+            left: 150px;
+            right: 150px;
+            height: 4px;
+            background-color: #E2E8F0;
+            z-index: 0;
+        }
+
+        .step-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        /* Step Number */
+        .step-number-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            border: 4px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-number {
+            font-family: 'Kanit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .step-1-color { border-color: #0066CC; color: #0066CC; }
+        .step-2-color { border-color: #00CC66; color: #00CC66; }
+        .step-3-color { border-color: #F59E0B; color: #F59E0B; }
+
+        .step-icon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .icon-bg-1 { border-color: #0066CC; color: #0066CC; }
+        .icon-bg-2 { border-color: #00CC66; color: #00CC66; }
+        .icon-bg-3 { border-color: #F59E0B; color: #F59E0B; }
+
+        /* Step Content */
+        .step-title {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1E293B;
+            margin-bottom: 15px;
+        }
+
+        .step-details {
+            background-color: #F8FAFC;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            border: 1px solid #E2E8F0;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-bullet {
+            margin-right: 10px;
+            margin-top: 3px;
+            font-size: 0.9rem;
+        }
+        
+        .check-1 { color: #0066CC; }
+        .check-2 { color: #00CC66; }
+        .check-3 { color: #F59E0B; }
+
+        /* Mockup Image Container */
+        .mockup-container {
+            width: 100%;
+            height: 180px;
+            background-color: #F1F5F9;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid #E2E8F0;
+        }
+        
+        .mockup-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover .mockup-image {
+            transform: scale(1.05);
+        }
+
+        .step-card:hover .step-number-container {
+            transform: scale(1.1);
+        }
+
+        /* Arrows between steps */
+        .step-arrow {
+            position: absolute;
+            top: 55px;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #CBD5E1;
+            background-color: #FFFFFF;
+            padding: 0 10px;
+            z-index: 1;
+        }
+
+        .arrow-1 { left: 32%; }
+        .arrow-2 { right: 32%; }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<div class="header-bar"></div>
+<div class="header">
+<div>Digital Product Passport Lite</div>
+<div>User Experience Flow</div>
+</div>
+<div class="title-section">
+<img src="logo.png" alt="DPP Lite Logo" class="title-logo">
+<h1 class="main-title">ง่ายแค่ 3 ขั้นตอน สำหรับลูกค้า</h1>
+<h2 class="subtitle">ไม่ต้องดาวน์โหลดแอปพลิเคชัน ใช้งานได้ทันที</h2>
+</div>
+<div class="content-wrapper">
+<div class="timeline-container">
+<!-- Line Background -->
+<div class="timeline-line"></div>
+<!-- Arrow Indicators -->
+<div class="step-arrow arrow-1"><i class="fa-solid fa-chevron-right"></i></div>
+<div class="step-arrow arrow-2"><i class="fa-solid fa-chevron-right"></i></div>
+<!-- Step 1 -->
+<div class="step-card">
+<div class="step-number-container step-1-color">
+<span class="step-number">1</span>
+<div class="step-icon icon-bg-1">
+<i class="fa-solid fa-qrcode"></i>
+</div>
+</div>
+<h3 class="step-title">สแกน QR</h3>
+<div class="step-details">
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-1"></i>
+<p>เปิดกล้องมือถือสแกนได้ทันที</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-1"></i>
+<p>QR Code บนสินค้า/กล่อง</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-1"></i>
+<p>เข้าถึงข้อมูลรวดเร็วใน 3 วินาที</p>
+</div>
+</div>
+<div class="mockup-container">
+<img alt="Mobile scanning QR code on product box" class="mockup-image" src="https://www.genspark.ai/api/files/s/U3LfPqlL?cache_control=3600"/>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="step-card">
+<div class="step-number-container step-2-color">
+<span class="step-number">2</span>
+<div class="step-icon icon-bg-2">
+<i class="fa-solid fa-mobile-screen"></i>
+</div>
+</div>
+<h3 class="step-title">ดูข้อมูล</h3>
+<div class="step-details">
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-2"></i>
+<p>✅ เช็คของแท้ทันที</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-2"></i>
+<p>ข้อมูลรุ่น วันผลิต หมดอายุ</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-2"></i>
+<p>คู่มือภาษาไทย + วิดีโอ</p>
+</div>
+</div>
+<div class="mockup-container">
+<img alt="Product information page on mobile screen" class="mockup-image" src="https://www.genspark.ai/api/files/s/PVywc385?cache_control=3600"/>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="step-card">
+<div class="step-number-container step-3-color">
+<span class="step-number">3</span>
+<div class="step-icon icon-bg-3">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+</div>
+<h3 class="step-title">ลงทะเบียนรับประกัน</h3>
+<div class="step-details">
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-3"></i>
+<p>กรอกเบอร์โทรศัพท์ง่ายๆ</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-3"></i>
+<p>ยืนยัน OTP เพื่อความปลอดภัย</p>
+</div>
+<div class="detail-item">
+<i class="fa-solid fa-check check-bullet check-3"></i>
+<p>รับประกันเริ่มทันที ติดต่อศูนย์ง่าย</p>
+</div>
+</div>
+<div class="mockup-container">
+<img alt="User registration flow diagram" class="mockup-image" src="https://www.genspark.ai/api/files/s/1c2MUK4r?cache_control=3600"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
